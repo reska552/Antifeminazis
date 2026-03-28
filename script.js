@@ -2,16 +2,20 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getDatabase, ref, push, onValue, set, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "PEGAR_ACA",
-  authDomain: "PEGAR_ACA",
-  databaseURL: "PEGAR_ACA",
-  projectId: "PEGAR_ACA"
+  apiKey: "AIzaSyBHTJukYkL_GbUrfB9MJB6dfWlu7NTmNTk",
+  authDomain: "antifeminazis-58ae7.firebaseapp.com",
+  databaseURL: "https://antifeminazis-58ae7-default-rtdb.firebaseio.com/",
+  projectId: "antifeminazis-58ae7",
+  storageBucket: "antifeminazis-58ae7.firebasestorage.app",
+  messagingSenderId: "81459037751",
+  appId: "1:81459037751:web:0f000ac0743e493b4ea1b2",
+  measurementId: "G-CVQ5F44Y4K"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// visitas
+// VISITAS
 const visitasRef = ref(db, "visitas");
 
 get(visitasRef).then((snap) => {
@@ -23,7 +27,7 @@ onValue(visitasRef, (snap) => {
   document.getElementById("visitas").innerText = snap.val();
 });
 
-// likes
+// LIKES
 function like() {
   const refLikes = ref(db, "likes");
   get(refLikes).then((snap) => {
@@ -35,12 +39,16 @@ onValue(ref(db, "likes"), snap => {
   document.getElementById("likes").innerText = snap.val() || 0;
 });
 
-// comentarios
+// COMENTARIOS
 function enviarComentario() {
   const nombre = document.getElementById("nombre").value;
   const comentario = document.getElementById("comentario").value;
 
+  if (!nombre || !comentario) return;
+
   push(ref(db, "comentarios"), { nombre, comentario });
+
+  document.getElementById("comentario").value = "";
 }
 
 onValue(ref(db, "comentarios"), (snapshot) => {
@@ -53,5 +61,6 @@ onValue(ref(db, "comentarios"), (snapshot) => {
   });
 });
 
+// FUNCIONES
 window.like = like;
 window.enviarComentario = enviarComentario;
