@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mi Post</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Mi publicación</h1>
+
+<img src="foto.jpg" width="300">
+
+<h3>Likes: <span id="likes">0</span></h3>
+<button onclick="like()">❤️</button>
+
+<h2>Comentarios</h2>
+
+<input id="nombre" placeholder="Tu nombre">
+<input id="comentario" placeholder="Comentario">
+<button onclick="enviarComentario()">Enviar</button>
+
+<div id="comentarios"></div>
+
+<p>Visitas: <span id="visitas">0</span></p>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
